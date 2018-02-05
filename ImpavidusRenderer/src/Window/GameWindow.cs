@@ -15,12 +15,19 @@ namespace ImpavidusRenderer {
       0, //Minor
       OpenTK.Graphics.GraphicsContextFlags.ForwardCompatible){ //Compatibility
         Console.WriteLine("OpenGL Version: " + GL.GetString(StringName.Version));
+        this.RenderFrame += Subscriber;
+      }
+
+      public void Subscriber(object sender, OpenTK.FrameEventArgs e){
+        Console.WriteLine("Subscribed!");
       }
 
       protected override void OnLoad(EventArgs e){
         base.OnLoad(e);
       }
 
+
+      //TODO subscribe to the UpdateFrame event instead of overriding
       protected override void OnUpdateFrame(OpenTK.FrameEventArgs e){
         base.OnUpdateFrame(e);
       }
