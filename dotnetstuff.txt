@@ -1,0 +1,2 @@
+dotnet add reference ../AwesomeLibrary.Core/AwesomeLibrary.Core.csproj
+dotnet sln add AwesomeLibrary.Core/AwesomeLibrary.Core.csproj
