@@ -1,4 +1,5 @@
 using OpenTK.Graphics.OpenGL;
+using System;
 
 namespace ImpavidusRenderer {
   public class ShaderProgram {
@@ -10,6 +11,20 @@ namespace ImpavidusRenderer {
       this.vertexID = LoadShader(vertexSource, ShaderType.VertexShader);
       this.fragmentID = LoadShader(fragmentSource, ShaderType.FragmentShader);
       this.programID = GL.CreateProgram();
+      GL.AttachShader(programID, vertexID);
+      GL.AttachShader(programID, fragmentID);
+      GL.LinkProgram(programID);
+      GL.ValidateProgram(programID);
+
+      int status;
+      GL.GetProgram(programID, GetProgramParameterName.LinkStatus, out status);
+      if(status == 0)
+      {
+        throw new OpenTK.GraphicsException(
+          string.Format("Error linking Program: {0}.", GL.GetProgramInfoLog(programID)));
+      }
+      int test = GL.GetAttribLocation(programID, "position");
+      Console.WriteLine(test);
     }
 
     public int LoadShader(string shaderSource, ShaderType type){
@@ -26,7 +41,15 @@ namespace ImpavidusRenderer {
 
       return shaderID;
     }
+    public void Start(){
+      GL.EnableVertexAttribArray(0);
+      GL.UseProgram(programID);
+    }
 
+    public void Stop(){
+      GL.DisableVertexAttribArray(0);
+      GL.UseProgram(0);
+    }
     //TODO CleanUp!
     public void CleanUp()
     {
