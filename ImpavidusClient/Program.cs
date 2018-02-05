@@ -1,5 +1,5 @@
 ﻿using System;
-using ImpavidusCore;
+using ImpavidusRenderer;
 
 namespace ImpavidusClient
 {
@@ -9,7 +9,9 @@ namespace ImpavidusClient
         {
             // GameObject b = new GameObject();
             // b.Test();
-            Console.WriteLine("Hello World!");
+          using(GameWindow window = new GameWindow(1280, 720)){
+            window.Run();
+          }
         }
     }
 }

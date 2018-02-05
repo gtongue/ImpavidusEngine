@@ -2,6 +2,9 @@
   <ItemGroup>
     <ProjectReference Include="..\ImpavidusCore\ImpavidusCore.csproj"/>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ImpavidusRenderer\ImpavidusRenderer.csproj"/>
+  </ItemGroup>
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.0</TargetFramework>
