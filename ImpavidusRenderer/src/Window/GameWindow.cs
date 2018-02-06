@@ -15,7 +15,7 @@ namespace ImpavidusRenderer {
       "Initial Window", //Title
       OpenTK.GameWindowFlags.Default, //Flags
       OpenTK.DisplayDevice.Default, //Display Device
-      3, //Major
+      4, //Major
       0, //Minor
       OpenTK.Graphics.GraphicsContextFlags.ForwardCompatible){ //Compatibility
         Console.WriteLine("OpenGL Version: " + GL.GetString(StringName.Version));
@@ -31,7 +31,7 @@ namespace ImpavidusRenderer {
         shaderProgram = new ShaderProgram(
               File.ReadAllText("./ImpavidusRenderer/src/Shader/Shaders/basic.vs"),
               File.ReadAllText("./ImpavidusRenderer/src/Shader/Shaders/basic.fs"));
-        renderable = new Renderable();
+        renderable = new Renderable(shaderProgram);
       }
 
 

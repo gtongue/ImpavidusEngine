@@ -5,7 +5,7 @@ namespace ImpavidusRenderer {
   public class ShaderProgram {
     int vertexID;
     int fragmentID;
-    int programID;
+    public int programID {get;}
 
     public ShaderProgram(string vertexSource, string fragmentSource){
       this.vertexID = LoadShader(vertexSource, ShaderType.VertexShader);
@@ -27,7 +27,7 @@ namespace ImpavidusRenderer {
       Console.WriteLine(test);
     }
 
-    public int LoadShader(string shaderSource, ShaderType type){
+    int LoadShader(string shaderSource, ShaderType type){
       int shaderID = GL.CreateShader(type);
       GL.ShaderSource(shaderID, shaderSource);
       GL.CompileShader(shaderID);
