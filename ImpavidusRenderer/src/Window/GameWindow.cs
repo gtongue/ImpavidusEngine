@@ -29,8 +29,8 @@ namespace ImpavidusRenderer {
       protected override void OnLoad(EventArgs e){
         base.OnLoad(e);
         shaderProgram = new ShaderProgram(
-              File.ReadAllText("./ImpavidusRenderer/src/Shader/Shaders/basic.vs"),
-              File.ReadAllText("./ImpavidusRenderer/src/Shader/Shaders/basic.fs"));
+              File.ReadAllText("./ImpavidusRenderer/src/Shader/Shaders/vs.glsl"),
+              File.ReadAllText("./ImpavidusRenderer/src/Shader/Shaders/fs.glsl"));
         renderable = new Renderable(shaderProgram);
       }
 

@@ -15,6 +15,7 @@ namespace ImpavidusRenderer {
       GL.AttachShader(programID, fragmentID);
       GL.LinkProgram(programID);
       GL.ValidateProgram(programID);
+      GL.BindAttribLocation(programID, 0, "position");
 
       int status;
       GL.GetProgram(programID, GetProgramParameterName.LinkStatus, out status);
