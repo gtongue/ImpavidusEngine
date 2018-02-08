@@ -11,8 +11,6 @@ namespace ImpavidusRenderer {
     public Renderable(ShaderProgram shaderProgram){
       this.shaderProgram = shaderProgram;
       InitBuffers();
-      // GetAttributes();
-      GetUniforms();
       u = GL.GetUniformLocation(shaderProgram.programID, "u_color");
       Console.WriteLine(u);
     }
@@ -25,34 +23,6 @@ namespace ImpavidusRenderer {
       ErrorCode err = GL.GetError();
       if(err != ErrorCode.NoError)
         Console.WriteLine(err.ToString());
-    }
-
-    public void GetAttributes(){
-      int count;
-      ActiveAttribType type;
-      int size;
-      GL.GetProgram(shaderProgram.programID, GetProgramParameterName.ActiveAttributes, out count);
-      Console.WriteLine(string.Format("Count of attributes is {0}", count));
-      for(int i = 0; i < count; i++){
-        string name = GL.GetActiveAttrib(shaderProgram.programID, i, out size, out type);
-        Console.WriteLine(string.Format("Size: {0}", size));
-        Console.WriteLine(string.Format("Type: {0}", type));
-        Console.WriteLine(string.Format("Name: {0}", name));
-      }
-    }
-
-    public void GetUniforms(){
-      int count;
-      int size;
-      ActiveUniformType type;
-      GL.GetProgram(shaderProgram.programID, GetProgramParameterName.ActiveUniforms, out count);
-      Console.WriteLine(string.Format("Count of uniforms is {0}", count));
-      for(int i = 0; i < count; i++){
-        string name = GL.GetActiveUniform(shaderProgram.programID, i, out size, out type);
-        Console.WriteLine(string.Format("Size: {0}", size));
-        Console.WriteLine(string.Format("Type: {0}", type));
-        Console.WriteLine(string.Format("Name: {0}", name));
-      }
     }
 
     public void InitBuffers(){

@@ -1,10 +1,14 @@
 using OpenTK.Graphics.OpenGL;
+using OpenTK;
 using System;
+using System.Collections.Generic;
 
 namespace ImpavidusRenderer {
   public class ShaderProgram {
     int vertexID;
     int fragmentID;
+    Dictionary<string, Tuple<int, ActiveUniformType>> uniforms;
+    Dictionary<string, Tuple<int, ActiveAttribType>> attributes;
     public int programID {get;}
 
     public ShaderProgram(string vertexSource, string fragmentSource){
@@ -24,8 +28,49 @@ namespace ImpavidusRenderer {
         throw new OpenTK.GraphicsException(
           string.Format("Error linking Program: {0}.", GL.GetProgramInfoLog(programID)));
       }
-      int test = GL.GetAttribLocation(programID, "position");
-      Console.WriteLine(test);
+      uniforms = new Dictionary<string, Tuple<int, ActiveUniformType>>();
+      GetUniforms();
+      attributes = new Dictionary<string, Tuple<int, ActiveAttribType>>();
+      GetAttributes();
+    }
+
+    public void GetUniforms(){
+      int count;
+      int size;
+      ActiveUniformType type;
+      GL.GetProgram(programID, GetProgramParameterName.ActiveUniforms, out count);
+      for(int i = 0; i < count; i++){
+        string name = GL.GetActiveUniform(programID, i, out size, out type);
+        uniforms.Add(name, Tuple.Create(i, type));
+      }
+    }
+    public void GetAttributes(){
+      int count;
+      ActiveAttribType type;
+      int size;
+      GL.GetProgram(programID, GetProgramParameterName.ActiveAttributes, out count);
+      Console.WriteLine(string.Format("Count of attributes is {0}", count));
+      for(int i = 0; i < count; i++){
+        string name = GL.GetActiveAttrib(programID, i, out size, out type);
+        attributes.Add(name, Tuple.Create(i, type));
+      }
+    }
+
+    public void SetUniform<T>(string name, T value){
+      Tuple<int, ActiveUniformType> uniform = uniforms[name];
+      switch (uniform.Item2)
+      {
+        case ActiveUniformType.FloatVec2:
+          if(typeof(T) == typeof(Vector2)){
+            GL.Uniform2(uniform.Item1, (Vector2)(object)value);
+          }else{
+            
+          }
+          break;          
+        default:
+          Console.WriteLine("Need to implement type: " + uniform.Item2.ToString());
+          break;
+      }
     }
 
     int LoadShader(string shaderSource, ShaderType type){

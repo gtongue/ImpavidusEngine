@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Graphics;
+using OpenTK;
 
 namespace ImpavidusRenderer {
   public class GameWindow : OpenTK.GameWindow {
@@ -48,6 +49,7 @@ namespace ImpavidusRenderer {
         GL.ClearColor(Color4.Green);
 
         shaderProgram.Start();
+        shaderProgram.SetUniform("u_color", new Vector2(1.0f, 0));
         mesh.Render();
         // renderable.Render();
         shaderProgram.Stop();
