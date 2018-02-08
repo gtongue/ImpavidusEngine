@@ -43,12 +43,10 @@ namespace ImpavidusRenderer {
       return shaderID;
     }
     public void Start(){
-      GL.EnableVertexAttribArray(0);
       GL.UseProgram(programID);
     }
 
     public void Stop(){
-      GL.DisableVertexAttribArray(0);
       GL.UseProgram(0);
     }
     //TODO CleanUp!

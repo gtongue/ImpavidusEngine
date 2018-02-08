@@ -33,9 +33,9 @@ namespace ImpavidusRenderer {
 
     public void Render(){
       GL.BindVertexArray(vaoID);
-      GL.EnableVertexArrayAttrib(vaoID, 0);
+      GL.EnableVertexAttribArray(0);
       GL.DrawArrays(PrimitiveType.Triangles, 0, 6);
-      GL.DisableVertexArrayAttrib(vaoID, 0);
+      GL.DisableVertexAttribArray(0);
       GL.BindVertexArray(0);
     }
   }
