@@ -2,7 +2,7 @@
 
 
 out vec4 out_Color;
-varying vec2 color;
+in vec2 color;
 
 void main(void)
 {

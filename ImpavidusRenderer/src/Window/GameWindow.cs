@@ -8,6 +8,7 @@ namespace ImpavidusRenderer {
     Renderable renderable;
     //TODO Need much better way of loading files in based on relative path
     ShaderProgram shaderProgram;
+    Mesh mesh;
     public GameWindow(int width, int height):base(
       width, //Width
       height, //Height
@@ -31,7 +32,8 @@ namespace ImpavidusRenderer {
         shaderProgram = new ShaderProgram(
               File.ReadAllText("./ImpavidusRenderer/src/Shader/Shaders/vs.glsl"),
               File.ReadAllText("./ImpavidusRenderer/src/Shader/Shaders/fs.glsl"));
-        renderable = new Renderable(shaderProgram);
+        mesh = new Mesh();
+        // renderable = new Renderable(shaderProgram);
       }
 
 
@@ -46,7 +48,8 @@ namespace ImpavidusRenderer {
         GL.ClearColor(Color4.Green);
 
         shaderProgram.Start();
-        renderable.Render();
+        mesh.Render();
+        // renderable.Render();
         shaderProgram.Stop();
         // GL.Begin(PrimitiveType.Triangles);
         // GL.Color4(Color4.Red);

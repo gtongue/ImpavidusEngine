@@ -22,6 +22,9 @@ namespace ImpavidusRenderer {
       GL.VertexAttribPointer(0, 2, VertexAttribPointerType.Float, false, Vector2.SizeInBytes, 0);
       GL.Uniform2(u, new Vector2(1.0f, 0.0f));
       GL.DrawArrays(PrimitiveType.Triangles, 0, 6);
+      ErrorCode err = GL.GetError();
+      if(err != ErrorCode.NoError)
+        Console.WriteLine(err.ToString());
     }
 
     public void GetAttributes(){

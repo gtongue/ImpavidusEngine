@@ -1,8 +1,8 @@
 #version 400 core
 
-attribute vec2 position;
+in vec2 position;
 uniform vec2 u_color;
-varying vec2 color;
+out vec2 color;
 
 void main(void)
 {
