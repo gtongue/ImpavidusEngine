@@ -64,7 +64,7 @@ namespace ImpavidusRenderer {
           if(typeof(T) == typeof(Vector2)){
             GL.Uniform2(uniform.Item1, (Vector2)(object)value);
           }else{
-            
+            UniformError(uniform.Item2, value);
           }
           break;          
         default:
@@ -73,6 +73,9 @@ namespace ImpavidusRenderer {
       }
     }
 
+    public void UniformError<T>(ActiveUniformType type, T value){
+      throw new GraphicsException("Uniform type mismatch. Expected:" + type.ToString() + "Received:" + typeof(T));
+    }
     int LoadShader(string shaderSource, ShaderType type){
       int shaderID = GL.CreateShader(type);
       GL.ShaderSource(shaderID, shaderSource);

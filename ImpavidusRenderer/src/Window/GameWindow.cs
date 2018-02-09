@@ -36,13 +36,6 @@ namespace ImpavidusRenderer {
         mesh = new Mesh();
         // renderable = new Renderable(shaderProgram);
       }
-
-
-      //TODO subscribe to the UpdateFrame event instead of overriding
-      protected override void OnUpdateFrame(OpenTK.FrameEventArgs e){
-        base.OnUpdateFrame(e);
-      }
-      
       protected override void OnRenderFrame(OpenTK.FrameEventArgs e){
         base.OnRenderFrame(e);
         GL.Clear(ClearBufferMask.ColorBufferBit);

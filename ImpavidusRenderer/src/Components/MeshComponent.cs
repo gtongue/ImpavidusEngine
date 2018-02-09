@@ -1,14 +1,14 @@
-using ImpavidusCore;
+// using ImpavidusCore;
 
-namespace ImpavidusRenderer {
-  public class MeshComponent: Component {
-    public override void Start(){
+// namespace ImpavidusRenderer {
+//   public class MeshComponent: Component {
+//     public override void Start(){
 
-    }
+//     }
 
-    public override void Update(){
+//     public override void Update(){
 
-    }
+//     }
     
-  }
-}
+//   }
+// }
