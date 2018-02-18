@@ -15,6 +15,7 @@ namespace ImpavidusCore
       this.position = new Vector3(0,0,0);
       this.rotation = new Vector3(0,0,0);
       this.scale = new Vector3(1,1,1);
+      
     }
 
     //TOOD this needs to be more generic I think just couldn't figure out how to

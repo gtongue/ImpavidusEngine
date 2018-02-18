@@ -9,6 +9,7 @@ namespace ImpavidusRenderer {
     Renderable renderable;
     //TODO Need much better way of loading files in based on relative path
     ShaderProgram shaderProgram;
+    RenderObject renderObject;
     Mesh mesh;
     public GameWindow(int width, int height):base(
       width, //Width
@@ -34,18 +35,20 @@ namespace ImpavidusRenderer {
               File.ReadAllText("./ImpavidusRenderer/src/Shader/Shaders/vs.glsl"),
               File.ReadAllText("./ImpavidusRenderer/src/Shader/Shaders/fs.glsl"));
         mesh = new Mesh();
+        renderObject = new RenderObject(shaderProgram);
         // renderable = new Renderable(shaderProgram);
       }
+      
       protected override void OnRenderFrame(OpenTK.FrameEventArgs e){
         base.OnRenderFrame(e);
         GL.Clear(ClearBufferMask.ColorBufferBit);
         GL.ClearColor(Color4.Green);
-
-        shaderProgram.Start();
-        shaderProgram.SetUniform("u_color", new Vector2(1.0f, 0));
-        mesh.Render();
+        renderObject.Render();
+        // shaderProgram.Start();
+        // shaderProgram.SetUniform("u_color", new Vector2(1.0f, 0));
+        // mesh.Render();
         // renderable.Render();
-        shaderProgram.Stop();
+        // shaderProgram.Stop();
         // GL.Begin(PrimitiveType.Triangles);
         // GL.Color4(Color4.Red);
         // GL.Vertex2(0,0);

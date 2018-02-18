@@ -1,6 +1,7 @@
 using OpenTK.Graphics.OpenGL;
 using OpenTK;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace ImpavidusRenderer {
@@ -44,6 +45,11 @@ namespace ImpavidusRenderer {
         uniforms.Add(name, Tuple.Create(i, type));
       }
     }
+
+    public string[] GetUniformNames(){
+      return uniforms.Keys.ToArray();
+    }
+    
     public void GetAttributes(){
       int count;
       ActiveAttribType type;
