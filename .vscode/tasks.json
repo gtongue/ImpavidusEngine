@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/ImpavidusEngine.csproj"
+                "${workspaceFolder}/ImpavidusEngine.sln"
             ],
             "problemMatcher": "$msCompile"
         }

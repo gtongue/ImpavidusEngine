@@ -22,6 +22,8 @@ namespace ImpavidusRenderer {
       0, //Minor
       OpenTK.Graphics.GraphicsContextFlags.ForwardCompatible){ //Compatibility
         Console.WriteLine("OpenGL Version: " + GL.GetString(StringName.Version));
+        // this.WindowBorder = WindowBorder.Hidden;
+        this.WindowBorder = WindowBorder.Fixed;
         // this.RenderFrame += Subscriber;
       }
 

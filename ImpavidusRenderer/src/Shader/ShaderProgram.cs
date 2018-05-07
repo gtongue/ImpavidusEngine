@@ -35,7 +35,7 @@ namespace ImpavidusRenderer {
       GetAttributes();
     }
 
-    public void GetUniforms(){
+    private void GetUniforms(){
       int count;
       int size;
       ActiveUniformType type;
@@ -48,6 +48,13 @@ namespace ImpavidusRenderer {
 
     public string[] GetUniformNames(){
       return uniforms.Keys.ToArray();
+    }
+
+    public Tuple<int, ActiveUniformType> GetUniformInfo(string uniformName){
+      if(uniforms.ContainsKey(uniformName)){
+        return uniforms[uniformName];
+      }
+      throw new GraphicsException("Error fetching uniform info: " + uniformName);
     }
     
     public void GetAttributes(){
@@ -62,26 +69,15 @@ namespace ImpavidusRenderer {
       }
     }
 
-    public void SetUniform<T>(string name, T value){
+    public void SetUniform(string name, Vector2 value){
       Tuple<int, ActiveUniformType> uniform = uniforms[name];
-      switch (uniform.Item2)
-      {
-        case ActiveUniformType.FloatVec2:
-          if(typeof(T) == typeof(Vector2)){
-            GL.Uniform2(uniform.Item1, (Vector2)(object)value);
-          }else{
-            UniformError(uniform.Item2, value);
-          }
-          break;          
-        default:
-          Console.WriteLine("Need to implement type: " + uniform.Item2.ToString());
-          break;
-      }
+      GL.Uniform2(uniform.Item1, (Vector2)(object)value);
     }
 
     public void UniformError<T>(ActiveUniformType type, T value){
-      throw new GraphicsException("Uniform type mismatch. Expected:" + type.ToString() + "Received:" + typeof(T));
+      // throw new GraphicsException("Uniform type mismatch. Expected:" + type.ToString() + "Received:" + typeof(T));
     }
+
     int LoadShader(string shaderSource, ShaderType type){
       int shaderID = GL.CreateShader(type);
       GL.ShaderSource(shaderID, shaderSource);
@@ -103,7 +99,7 @@ namespace ImpavidusRenderer {
     public void Stop(){
       GL.UseProgram(0);
     }
-    //TODO CleanUp!
+    //TODO CleanUp! with disposable
     public void CleanUp()
     {
       GL.UseProgram(0);
